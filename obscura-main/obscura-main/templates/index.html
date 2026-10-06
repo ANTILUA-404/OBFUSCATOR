@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANTILUA OBFUSCATION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="grid-bg"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <span>ANTILUA</span>
+            </div>
+            <div class="nav-links">
+            </div>
+            <div class="nav-auth">
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="hero-section">
+            <div class="badge-pill">
+                <span class="pulse-dot"></span> v1.0.0 Engine Online
+            </div>
+            <h1><span class="gradient-text">ANTILUA</span> OBFUSCATION</h1>
+            <p>Advanced control flow flattening, virtualization, and constant encryption designed specifically for Roblox.</p>
+        </div>
+
+        <div class="app-workspace">
+            <!-- Toolbar -->
+            <div class="workspace-toolbar">
+                <div class="toolbar-left">
+                    <div class="setting-group">
+                        <label>Preset</label>
+                        <select id="level-select" class="modern-select">
+                            <option value="1">Level 1: Fast (Lexical)</option>
+                            <option value="2">Level 2: Standard (CFF)</option>
+                            <option value="3" selected>Level 3: Maximum (Constants)</option>
+                            <option value="4" hidden>Level 4: Paranoid (VM)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="toolbar-right">
+                    <button id="obfuscate-btn" class="btn-primary">
+                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <span class="btn-text">Obfuscate Code</span>
+                        <div class="loader hidden" id="btn-loader"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Editor Split -->
+            <div class="editor-split">
+                <!-- Input pane -->
+                <div class="editor-pane input-pane">
+                    <div class="pane-header">
+                        <span class="pane-title">source.lua</span>
+                        <div class="pane-actions">
+                            <button id="clear-btn" class="icon-button" title="Clear Input">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div class="pane-content">
+                        <div class="line-numbers">
+                            <span>1</span>
+                        </div>
+                        <textarea id="input-code" placeholder="-- Paste your unencrypted Luau source here..." spellcheck="false"></textarea>
+                    </div>
+                </div>
+
+                <!-- Output pane -->
+                <div class="editor-pane output-pane">
+                    <div class="pane-header">
+                        <span class="pane-title">protected.lua</span>
+                        <div class="pane-actions">
+                            <button id="copy-btn" class="icon-button" title="Copy Output">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                Copy
+                            </button>
+                            <button id="download-btn" class="icon-button" title="Download Output">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="pane-content">
+                        <div class="line-numbers">
+                            <span>1</span>
+                        </div>
+                        <pre><code id="output-code" class="language-lua">-- Obfuscated output will appear here...</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="toast" class="toast">Action completed!</div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
